@@ -32,3 +32,4 @@ C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.cspr
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.csproj.CopyComplete
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.exe
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.pdb
+C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.login.resources
