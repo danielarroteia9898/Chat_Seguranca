@@ -8,9 +8,10 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 namespace Client.Properties
 {
+
+
     /// <summary>
     ///   Uma classe de recurso fortemente tipados, para pesquisar cadeias de caracteres localizadas etc.
     /// </summary>
