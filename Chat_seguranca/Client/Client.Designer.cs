@@ -75,6 +75,7 @@
             this.textBoxAmigos.Location = new System.Drawing.Point(545, 82);
             this.textBoxAmigos.Multiline = true;
             this.textBoxAmigos.Name = "textBoxAmigos";
+            this.textBoxAmigos.ReadOnly = true;
             this.textBoxAmigos.Size = new System.Drawing.Size(177, 375);
             this.textBoxAmigos.TabIndex = 4;
             // 
@@ -106,6 +107,7 @@
             this.textBoxMensagens.Location = new System.Drawing.Point(82, 82);
             this.textBoxMensagens.Multiline = true;
             this.textBoxMensagens.Name = "textBoxMensagens";
+            this.textBoxMensagens.ReadOnly = true;
             this.textBoxMensagens.Size = new System.Drawing.Size(457, 283);
             this.textBoxMensagens.TabIndex = 7;
             // 

@@ -23,7 +23,7 @@ namespace Client
         public Client()
         {
             InitializeComponent();
-            MessageBox.Show("User: \nPass: ", "Login");
+            
 
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
             client = new TcpClient();
@@ -86,14 +86,5 @@ namespace Client
             CloseClient();
             this.Close();
         }
-
-
-
-        /* A seguir a isto, avançamos para a parte de Servidor.
-        Em resumo teremos de criar um novo projecto associado à mesma solução (FichaPratica3).
-        Nesse projecto (Server/Servidor) teremos de adicionar também a referência ao ProtocolSI.
-        Por último referir que, tal como indicado no enunciado da ficha/exercício
-        este 2º formulário deve ser do tipo "Console Application".
-        */
     }
 }
