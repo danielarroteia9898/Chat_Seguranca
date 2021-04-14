@@ -88,5 +88,11 @@ namespace Client
             CloseClient();
             this.Close();
         }
+
+        private void linkLabel_login_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            login form = new login();
+            form.ShowDialog();
+        }
     }
 }
