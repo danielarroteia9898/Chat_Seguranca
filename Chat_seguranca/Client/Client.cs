@@ -32,6 +32,8 @@ namespace Client
             protocolSI = new ProtocolSI();
         }
 
+
+
         // Método do botão enviar
         private void buttonSend_Click(object sender, EventArgs e)
         {

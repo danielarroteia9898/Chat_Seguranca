@@ -1,9 +1,11 @@
-﻿using System;
+﻿using EI.SI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,5 +18,12 @@ namespace Client
         {
             InitializeComponent();
         }
+
+        
+        private void btn_submit_Click(object sender, EventArgs e)
+        {
+            
+        }
+        
     }
 }

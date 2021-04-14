@@ -62,6 +62,7 @@ namespace Client
             this.btn_submit.TabIndex = 3;
             this.btn_submit.Text = "Entrar";
             this.btn_submit.UseVisualStyleBackColor = true;
+            this.btn_submit.Click += new System.EventHandler(this.btn_submit_Click);
             // 
             // textBox_username
             // 
