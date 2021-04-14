@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Client
 {
-    class Utilizador: Client
+    class Utilizador
 
     {
         string Username { get; set; }
