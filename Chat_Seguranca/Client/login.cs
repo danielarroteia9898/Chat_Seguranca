@@ -15,23 +15,24 @@ namespace Client
 {
     public partial class login : Form
     {
-        //para a comunicação com o server - definição de variaveis
+        /*para a comunicação com o server - definição de variaveis
         private const int PORT = 1000;
         NetworkStream networkStream;
 
         ProtocolSI protocolSI;
-        TcpClient cliente;
+        TcpClient cliente;*/
 
         public login()
         {
             InitializeComponent();
 
+            /*
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
             cliente = new TcpClient();
             cliente.Connect(endpoint);
             networkStream = cliente.GetStream();
 
-            protocolSI = new ProtocolSI();
+            protocolSI = new ProtocolSI();*/
 
         }
 
