@@ -23,8 +23,6 @@ namespace Client
         public Client()
         {
             InitializeComponent();
-            
-
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
             client = new TcpClient();
             client.Connect(endpoint);
@@ -35,7 +33,7 @@ namespace Client
         // Método do botão enviar
         private void buttonSend_Click(object sender, EventArgs e)
         {
-            string msg =textBoxMessage.Text;
+            string msg = textBoxMessage.Text;
             textBoxMessage.Clear();
             byte[] packet = protocolSI.Make(ProtocolSICmdType.DATA, msg); //cria uma mensagem/pacote de um tipo específico
             networkStream.Write(packet, 0, packet.Length);
