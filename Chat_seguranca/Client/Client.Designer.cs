@@ -55,7 +55,7 @@
             // 
             this.textBoxMessage.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxMessage.Location = new System.Drawing.Point(109, 486);
-            this.textBoxMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxMessage.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMessage.Multiline = true;
             this.textBoxMessage.Name = "textBoxMessage";
             this.textBoxMessage.Size = new System.Drawing.Size(481, 75);
@@ -65,7 +65,7 @@
             // 
             this.buttonSend.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonSend.Location = new System.Drawing.Point(589, 486);
-            this.buttonSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSend.Margin = new System.Windows.Forms.Padding(4);
             this.buttonSend.Name = "buttonSend";
             this.buttonSend.Size = new System.Drawing.Size(129, 76);
             this.buttonSend.TabIndex = 2;
@@ -77,7 +77,7 @@
             // 
             this.textBoxAmigos.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxAmigos.Location = new System.Drawing.Point(727, 101);
-            this.textBoxAmigos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxAmigos.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxAmigos.Multiline = true;
             this.textBoxAmigos.Name = "textBoxAmigos";
             this.textBoxAmigos.ReadOnly = true;
@@ -101,7 +101,7 @@
             // 
             this.buttonAddAmigos.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.buttonAddAmigos.Location = new System.Drawing.Point(907, 50);
-            this.buttonAddAmigos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddAmigos.Margin = new System.Windows.Forms.Padding(4);
             this.buttonAddAmigos.Name = "buttonAddAmigos";
             this.buttonAddAmigos.Size = new System.Drawing.Size(56, 46);
             this.buttonAddAmigos.TabIndex = 6;
@@ -112,7 +112,7 @@
             // 
             this.textBoxMensagens.Font = new System.Drawing.Font("Cooper Black", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxMensagens.Location = new System.Drawing.Point(109, 101);
-            this.textBoxMensagens.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxMensagens.Margin = new System.Windows.Forms.Padding(4);
             this.textBoxMensagens.Multiline = true;
             this.textBoxMensagens.Name = "textBoxMensagens";
             this.textBoxMensagens.ReadOnly = true;
@@ -134,9 +134,11 @@
             // linkLabel_login
             // 
             this.linkLabel_login.AutoSize = true;
+            this.linkLabel_login.Font = new System.Drawing.Font("Comic Sans MS", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel_login.LinkColor = System.Drawing.Color.RoyalBlue;
             this.linkLabel_login.Location = new System.Drawing.Point(106, 9);
             this.linkLabel_login.Name = "linkLabel_login";
-            this.linkLabel_login.Size = new System.Drawing.Size(43, 17);
+            this.linkLabel_login.Size = new System.Drawing.Size(56, 26);
             this.linkLabel_login.TabIndex = 9;
             this.linkLabel_login.TabStop = true;
             this.linkLabel_login.Text = "Login";
@@ -156,7 +158,7 @@
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.labelMessage);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Client";
             this.Text = "Client";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Client_FormClosing);
