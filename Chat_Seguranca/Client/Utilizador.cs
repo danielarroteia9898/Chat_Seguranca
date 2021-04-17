@@ -10,16 +10,18 @@ namespace Client
 
     {
         string Username { get; set; }
+        string Password { get; set; }
 
-        public Utilizador(string username)
+        public Utilizador(string username, string password)
         {
             Username = username;
+            Password = password;
 
         }
 
         public override string ToString()
         {
-            return base.ToString() + Username;
+            return "Username: " + Username + Password ;
         }
     }
 }
