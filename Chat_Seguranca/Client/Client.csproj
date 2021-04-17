@@ -48,22 +48,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs">
+    <Compile Include="Chat.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Client.Designer.cs">
-      <DependentUpon>Client.cs</DependentUpon>
+    <Compile Include="Chat.Designer.cs">
+      <DependentUpon>Chat.cs</DependentUpon>
     </Compile>
+    <Compile Include="Cliente.cs" />
     <Compile Include="login.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="login.Designer.cs">
       <DependentUpon>login.cs</DependentUpon>
     </Compile>
+    <Compile Include="Mensagem.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Client.resx">
-      <DependentUpon>Client.cs</DependentUpon>
+    <EmbeddedResource Include="Chat.resx">
+      <DependentUpon>Chat.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="login.resx">
       <DependentUpon>login.cs</DependentUpon>

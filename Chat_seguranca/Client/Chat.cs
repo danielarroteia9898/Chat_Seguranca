@@ -13,14 +13,14 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class Client : Form
+    public partial class Chat : Form
     {
         private const int PORT = 10000;
         NetworkStream networkStream;
         ProtocolSI protocolSI;
         TcpClient client;
 
-        public Client()
+        public Chat()
         {
             InitializeComponent();
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
@@ -43,7 +43,7 @@ namespace Client
                 networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
             }
         }
-        
+
 
         // O envio de bits/bytes é trivial recorrendo ao ProtocolSI.
 
@@ -55,7 +55,7 @@ namespace Client
                 // Definição da variável eot (End of Transmission) do tipo array de byte.
                 // Utilização do método Make. ProtocolSICmdType serve para enviar dados
                 byte[] eot = protocolSI.Make(ProtocolSICmdType.EOT);
-                
+
                 // A classe NetworkStream disponibiliza métodos para enviar/receber dados através de socket Stream
                 // O Socket de rede é um endpoint interno para envio e recepção de dados com um nó/computador presente na rede.
                 networkStream.Write(eot, 0, eot.Length);
@@ -63,13 +63,13 @@ namespace Client
                 networkStream.Close();
                 client.Close();
             }
-            
+
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-            }            
+            }
         }
-        
+
         //Método para fechar o formulário
         private void Client_FormClosing(object sender, FormClosingEventArgs e)
         {
@@ -83,6 +83,11 @@ namespace Client
             // Chamar a função para fechar o Client e associar a este próprio botão
             CloseClient();
             this.Close();
+        }
+        //Método para apresentar lista de amigos
+        private void ApresentarAmigos()
+        {
+
         }
     }
 }
