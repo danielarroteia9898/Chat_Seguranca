@@ -34,11 +34,3 @@ C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.exe
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.pdb
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.login.resources
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Client\obj\Debug\Client.Chat.resources
-E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.csprojAssemblyReference.cache
-E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.Chat.resources
-E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.login.resources
-E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.Properties.Resources.resources
-E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.csproj.GenerateResource.cache
-E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
-E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.exe
-E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.pdb
