@@ -80,7 +80,7 @@ namespace Server
                 {
                     //Dica do ALT
                     case ProtocolSICmdType.DATA:
-                        Console.WriteLine("Client " + clientID + ": " + protocolSI.GetStringFromData());
+                        Console.WriteLine( clientID + " : " + DateTime.Now.ToShortTimeString() + protocolSI.GetStringFromData());
                         ack = protocolSI.Make(ProtocolSICmdType.ACK);
                         networkStream.Write(ack, 0, ack.Length);
                         break;
