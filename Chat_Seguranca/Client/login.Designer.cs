@@ -60,7 +60,7 @@ namespace Client
             this.btn_submit.Name = "btn_submit";
             this.btn_submit.Size = new System.Drawing.Size(165, 60);
             this.btn_submit.TabIndex = 3;
-            this.btn_submit.Text = "Entrar";
+            this.btn_submit.Text = "Autentificar";
             this.btn_submit.UseVisualStyleBackColor = true;
             this.btn_submit.Click += new System.EventHandler(this.btn_submit_Click);
             // 

@@ -22,7 +22,8 @@ namespace Client
         
         private void btn_submit_Click(object sender, EventArgs e)
         {
-           
+            Client form = new Client();
+            form.Show();
         }
         
     }
