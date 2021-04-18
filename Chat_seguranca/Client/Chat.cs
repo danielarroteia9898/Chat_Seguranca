@@ -90,6 +90,10 @@ namespace Client
 
         }
 
-       
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            login formLogin= new login();
+            formLogin.Show();
+        }
     }
 }

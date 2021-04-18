@@ -19,7 +19,8 @@ namespace Client
 
         private void btn_submit_Click(object sender, EventArgs e)
         {
-            Application.Run(new Chat());
+            Chat form = new Chat();
+            form.Show();
         }
     }
 }
