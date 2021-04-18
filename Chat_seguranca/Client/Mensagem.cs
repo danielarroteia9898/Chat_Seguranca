@@ -14,11 +14,15 @@ namespace Client
 
         public Cliente cliente;
 
-        public Mensagem(string textMensagem, DateTime data_envio, Cliente cliente)
+        public Mensagem(string textMensagem, DateTime data_envio, string username, string password, List<Cliente> listaAmigos, List<Mensagem> listaMensagens, Cliente cliente)
         {
+            
             this.textMensagem = textMensagem;
             this.data_envio = data_envio;
             this.cliente = cliente;
+            
+          
+
         }
     }
 }
