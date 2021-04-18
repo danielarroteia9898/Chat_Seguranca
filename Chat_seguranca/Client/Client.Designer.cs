@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class Chat
+    partial class Client
     {
         /// <summary>
         /// Variável de designer necessária.
