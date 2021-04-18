@@ -23,3 +23,11 @@ C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Server\obj\Debug\Server.cspr
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Server\obj\Debug\Server.csproj.CopyComplete
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Server\obj\Debug\Server.exe
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Server\obj\Debug\Server.pdb
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Server\bin\Debug\Server.exe.config
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Server\bin\Debug\Server.exe
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Server\bin\Debug\Server.pdb
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.csprojAssemblyReference.cache
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.csproj.CopyComplete
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.exe
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.pdb
