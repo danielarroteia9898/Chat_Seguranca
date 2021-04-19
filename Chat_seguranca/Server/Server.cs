@@ -25,7 +25,7 @@ namespace Server
             listener.Start();
             Console.WriteLine("SERVER READY");
             int clientCounter = 0;
-            string clientUser = "sadasd";
+         
 
             //Criação do ciclo infinito de forma a que este esteja sempre em execução até ordem em contrário
             while (true)
@@ -37,7 +37,7 @@ namespace Server
                 clientCounter++;
 
                 // Apresentação da mensagem indicative do nº do client na linha de comandos 
-                Console.WriteLine("Client {0} connected", clientUser);
+                Console.WriteLine("Client {0} connected", clientCounter);
 
                 // Definição da variável clientHandler do tipo TcpClient
                 ClientHandler clientHandler = new ClientHandler(client, clientCounter);
@@ -80,7 +80,7 @@ namespace Server
                 {
                     //Dica do ALT
                     case ProtocolSICmdType.DATA:
-                        Console.WriteLine( clientID + " : " + DateTime.Now.ToShortTimeString() + protocolSI.GetStringFromData());
+                        Console.WriteLine( clientID + " : " + DateTime.Now.ToShortTimeString() +" "+ protocolSI.GetStringFromData());
                         ack = protocolSI.Make(ProtocolSICmdType.ACK);
                         networkStream.Write(ack, 0, ack.Length);
                         break;
