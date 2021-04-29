@@ -23,11 +23,9 @@ namespace Client
         public Chat()
         {
             InitializeComponent();
-            IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
-            client = new TcpClient();
-            client.Connect(endpoint);
-            networkStream = client.GetStream();
-            protocolSI = new ProtocolSI();
+          
+            
+            
         }
 
         // Método do botão enviar
@@ -86,6 +84,11 @@ namespace Client
         }
         //Método para apresentar lista de amigos
         private void ApresentarAmigos()
+        {
+
+        }
+
+        private void textBoxMensagens_TextChanged(object sender, EventArgs e)
         {
 
         }

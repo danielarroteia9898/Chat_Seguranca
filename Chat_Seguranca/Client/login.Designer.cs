@@ -33,7 +33,7 @@ namespace Client
             this.label_password = new System.Windows.Forms.Label();
             this.btn_submit = new System.Windows.Forms.Button();
             this.textBox_username = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
+            this.textBox_password = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label_Username
@@ -71,19 +71,19 @@ namespace Client
             this.textBox_username.Size = new System.Drawing.Size(161, 22);
             this.textBox_username.TabIndex = 4;
             // 
-            // textBox2
+            // textBox_password
             // 
-            this.textBox2.Location = new System.Drawing.Point(286, 214);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(161, 22);
-            this.textBox2.TabIndex = 5;
+            this.textBox_password.Location = new System.Drawing.Point(286, 214);
+            this.textBox_password.Name = "textBox_password";
+            this.textBox_password.Size = new System.Drawing.Size(161, 22);
+            this.textBox_password.TabIndex = 5;
             // 
             // login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.textBox_password);
             this.Controls.Add(this.textBox_username);
             this.Controls.Add(this.btn_submit);
             this.Controls.Add(this.label_password);
@@ -101,6 +101,6 @@ namespace Client
         private System.Windows.Forms.Label label_password;
         private System.Windows.Forms.Button btn_submit;
         private System.Windows.Forms.TextBox textBox_username;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox textBox_password;
     }
 }
