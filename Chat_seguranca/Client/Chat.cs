@@ -23,9 +23,13 @@ namespace Client
         public Chat()
         {
             InitializeComponent();
-          
-            
-            
+            IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
+            //lient = Cliente();
+            client = new TcpClient();
+            client.Connect(endpoint);
+            networkStream = client.GetStream();
+            protocolSI = new ProtocolSI();
+
         }
 
         // Método do botão enviar
@@ -33,8 +37,8 @@ namespace Client
         {
             string msg = textBoxMessage.Text;
             textBoxMessage.Clear();
-            byte[] packet = protocolSI.Make(ProtocolSICmdType.DATA, msg); //cria uma mensagem/pacote de um tipo específico
-            networkStream.Write(packet, 0, packet.Length);
+            byte[] chat = protocolSI.Make(ProtocolSICmdType.DATA, msg); //cria uma mensagem/pacote de um tipo específico
+            networkStream.Write(chat, 0, chat.Length);
             textBoxMensagens.AppendText(msg);
             while (protocolSI.GetCmdType() != ProtocolSICmdType.ACK)
             {

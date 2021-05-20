@@ -35,10 +35,11 @@ namespace Client
             client.Connect(endPoint);
             networkStream = client.GetStream();
 
-            string utilizador = textBox_username.Text;
+            
+            string username = textBox_username.Text;
 
             //para guardar o utilizador
-            byte[] packet = protocolSI.Make(ProtocolSICmdType.DATA, utilizador);
+            byte[] packet = protocolSI.Make(ProtocolSICmdType.DATA, username);
 
             string password = textBox_password.Text;
 
@@ -46,9 +47,13 @@ namespace Client
             byte[] pass = protocolSI.Make(ProtocolSICmdType.DATA, password);
 
             networkStream.Write(packet, 0, packet.Length);
+            networkStream.Write(pass, 0, pass.Length);
 
+           // Cliente nove_cliente = new Cliente(username, password);
+            
             Chat form = new Chat();
             form.Show();
+            
 
         }
     }
