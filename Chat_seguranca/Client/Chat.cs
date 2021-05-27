@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
@@ -25,6 +26,11 @@ namespace Client
         private byte[] key;
         private byte[] iv;
         AesCryptoServiceProvider aes;
+
+        //variaveis para ficheiros
+        const string EncrFolder = @"c:\Encrypt\";
+        const string DecrFolder = @"c:\Decrypt\";
+        const string SrcFolder = @"c:\docs\";
 
         public Chat()
         {
@@ -74,8 +80,27 @@ namespace Client
             byte[] txtDecifrado = Encoding.UTF8.GetBytes(txt);
 
             //var para guardar as mensagens
-        }
+            byte[] txtCifrado;
 
+            //reserva de memória  para o texto a cifrar
+            MemoryStream ms = new MemoryStream();
+
+            //Iniciar o sistema de cifragem
+            CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write);
+
+            //para cifrar os dados
+            cs.Write(txtDecifrado, 0, txtDecifrado.Length);
+            //cs.Close();
+
+            //guardar os dados cifrados
+            txtCifrado = ms.ToArray();
+
+            //converter os bytes para texto
+            string txtCifradoB64 = Convert.ToBase64String(txtCifrado);
+
+            return txtCifradoB64;
+        }
+       
         // Método do botão enviar
         private void buttonSend_Click(object sender, EventArgs e)
         {
@@ -83,14 +108,13 @@ namespace Client
             aes = new AesCryptoServiceProvider();
             key = aes.Key;
             iv = aes.IV;
+            string text = GerarChavePrivada(textBoxMessage.Text);
+            GerarIV(textBoxMessage.Text);
 
-            string keyB64 = Convert.ToBase64String(key);
-            string ivB64 = Convert.ToBase64String(iv);
-            //GerarChavePrivada();
-            //GerarIV();
 
-            networkStream.Write(key, 0, key.Length);
-            networkStream.Write(iv, 0, iv.Length);
+            MessageBox.Show(text);
+            //networkStream.Write(key, 0, key.Length);
+           // networkStream.Write(iv, 0, iv.Length);
 
             //código para enviar mensagem
             string msg = textBoxMessage.Text;
@@ -102,6 +126,16 @@ namespace Client
             {
                 networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
             }
+            
+            //codigo cifrar
+            string textoACifrar = textBoxMensagens.Text;
+
+            string textoCifrado = CifrarTexto(textoACifrar);
+
+           // byte[] textCifrado = 
+
+            Console.WriteLine(textoCifrado);
+            //enviar o teto cifrado por ficheiro
         }
 
 
