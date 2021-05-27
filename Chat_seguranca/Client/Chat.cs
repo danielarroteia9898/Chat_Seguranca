@@ -67,6 +67,15 @@ namespace Client
             return ivB64;
         }
 
+        //metodo para cifrar a mensagem
+        private string CifrarTexto (string txt)
+        {
+            //var para guardar as mensagens
+            byte[] txtDecifrado = Encoding.UTF8.GetBytes(txt);
+
+            //var para guardar as mensagens
+        }
+
         // Método do botão enviar
         private void buttonSend_Click(object sender, EventArgs e)
         {
@@ -74,6 +83,11 @@ namespace Client
             aes = new AesCryptoServiceProvider();
             key = aes.Key;
             iv = aes.IV;
+
+            string keyB64 = Convert.ToBase64String(key);
+            string ivB64 = Convert.ToBase64String(iv);
+            //GerarChavePrivada();
+            //GerarIV();
 
             networkStream.Write(key, 0, key.Length);
             networkStream.Write(iv, 0, iv.Length);
