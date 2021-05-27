@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -20,6 +21,11 @@ namespace Client
         ProtocolSI protocolSI;
         TcpClient client;
 
+        //para cifrar/decifrar as mensagens
+        private byte[] key;
+        private byte[] iv;
+        AesCryptoServiceProvider aes;
+
         public Chat()
         {
             InitializeComponent();
@@ -32,9 +38,47 @@ namespace Client
 
         }
 
+        //gerar a chave simétrica
+        private string GerarChavePrivada(string pass)
+        {
+            byte[] salt = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7 };
+
+            Rfc2898DeriveBytes pwdGen = new Rfc2898DeriveBytes(pass, salt, 1000);
+
+            //gerar a chave
+            byte[] key = pwdGen.GetBytes(16);
+
+            string passB64 = Convert.ToBase64String(key);
+           
+            return passB64;
+        }
+
+
+        //metodo para  vetor de inicialização
+        private string GerarIV(string pass)
+        {
+            byte[] salt = new byte[] { 7, 6, 5, 4, 3, 2, 1, 0 };
+            Rfc2898DeriveBytes pwdGen = new Rfc2898DeriveBytes(pass, salt, 1000);
+
+            //gerar o vetor
+            byte[] iv = pwdGen.GetBytes(16);
+            string ivB64 = Convert.ToBase64String(iv);
+
+            return ivB64;
+        }
+
         // Método do botão enviar
         private void buttonSend_Click(object sender, EventArgs e)
         {
+            //guardar a chave e vetor
+            aes = new AesCryptoServiceProvider();
+            key = aes.Key;
+            iv = aes.IV;
+
+            networkStream.Write(key, 0, key.Length);
+            networkStream.Write(iv, 0, iv.Length);
+
+            //código para enviar mensagem
             string msg = textBoxMessage.Text;
             textBoxMessage.Clear();
             byte[] chat = protocolSI.Make(ProtocolSICmdType.DATA, msg); //cria uma mensagem/pacote de um tipo específico
