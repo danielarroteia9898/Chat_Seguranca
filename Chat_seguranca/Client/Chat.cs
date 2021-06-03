@@ -100,7 +100,33 @@ namespace Client
 
             return txtCifradoB64;
         }
-       
+
+        //método para decifrar
+        private string DecifrarTexto(string txtCifradoB64)
+        {
+            //var para guardar o texto cifrado
+            byte[] txtCifrado = Convert.FromBase64String(txtCifradoB64);
+
+            MemoryStream ms = new MemoryStream(txtCifrado);
+
+            CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read);
+
+            //var para guardar o texto decifrado
+            byte[] txtDecifrado = new byte[ms.Length];
+
+            int bytesLidos = 0;
+
+            //decifrar os dados
+            bytesLidos = cs.Read(txtDecifrado, 0, txtDecifrado.Length);
+            cs.Close();
+
+            string textoDecifrado = Encoding.UTF8.GetString(txtDecifrado, 0, bytesLidos);
+
+            return textoDecifrado;
+
+        }
+
+
         // Método do botão enviar
         private void buttonSend_Click(object sender, EventArgs e)
         {
