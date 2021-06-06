@@ -170,19 +170,23 @@
             // chavePúblicaToolStripMenuItem
             // 
             this.chavePúblicaToolStripMenuItem.Name = "chavePúblicaToolStripMenuItem";
-            this.chavePúblicaToolStripMenuItem.Size = new System.Drawing.Size(241, 26);
+            this.chavePúblicaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.chavePúblicaToolStripMenuItem.Size = new System.Drawing.Size(290, 26);
             this.chavePúblicaToolStripMenuItem.Text = "Chave Pública";
+            this.chavePúblicaToolStripMenuItem.Click += new System.EventHandler(this.chavePúblicaToolStripMenuItem_Click);
             // 
             // mensagensCifradasToolStripMenuItem
             // 
             this.mensagensCifradasToolStripMenuItem.Name = "mensagensCifradasToolStripMenuItem";
-            this.mensagensCifradasToolStripMenuItem.Size = new System.Drawing.Size(241, 26);
+            this.mensagensCifradasToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
+            this.mensagensCifradasToolStripMenuItem.Size = new System.Drawing.Size(290, 26);
             this.mensagensCifradasToolStripMenuItem.Text = "Mensagens Cifradas";
             // 
             // mensagensDecifradasToolStripMenuItem
             // 
             this.mensagensDecifradasToolStripMenuItem.Name = "mensagensDecifradasToolStripMenuItem";
-            this.mensagensDecifradasToolStripMenuItem.Size = new System.Drawing.Size(241, 26);
+            this.mensagensDecifradasToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.mensagensDecifradasToolStripMenuItem.Size = new System.Drawing.Size(290, 26);
             this.mensagensDecifradasToolStripMenuItem.Text = "Mensagens Decifradas";
             // 
             // Chat

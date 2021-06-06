@@ -30,7 +30,12 @@ namespace Client
         //variaveis para ficheiros
         const string EncrFolder = @"c:\Encrypt\";
         const string DecrFolder = @"c:\Decrypt\";
-        const string SrcFolder = @"c:\docs\";
+        const string SrcFolder = @"c:\ChavePublica\";
+
+        //var para guardar os ficheiro e abri-los
+
+        private OpenFileDialog openFileDialog = new OpenFileDialog();
+
 
         public Chat()
         {
@@ -55,7 +60,7 @@ namespace Client
             byte[] key = pwdGen.GetBytes(16);
 
             string passB64 = Convert.ToBase64String(key);
-           
+
             return passB64;
         }
 
@@ -74,7 +79,7 @@ namespace Client
         }
 
         //metodo para cifrar a mensagem
-        private string CifrarTexto (string txt)
+        private string CifrarTexto(string txt)
         {
             //var para guardar as mensagens
             byte[] txtDecifrado = Encoding.UTF8.GetBytes(txt);
@@ -140,7 +145,7 @@ namespace Client
 
             MessageBox.Show(text);
             //networkStream.Write(key, 0, key.Length);
-           // networkStream.Write(iv, 0, iv.Length);
+            // networkStream.Write(iv, 0, iv.Length);
 
             //código para enviar mensagem
             string msg = textBoxMessage.Text;
@@ -152,13 +157,13 @@ namespace Client
             {
                 networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
             }
-            
+
             //codigo cifrar
             string textoACifrar = textBoxMensagens.Text;
 
             string textoCifrado = CifrarTexto(textoACifrar);
 
-           // byte[] textCifrado = 
+            // byte[] textCifrado = 
 
             Console.WriteLine(textoCifrado);
             //enviar o teto cifrado por ficheiro
@@ -213,6 +218,35 @@ namespace Client
         private void textBoxMensagens_TextChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void chavePúblicaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            //para criar a diretória
+            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+
+            //chaves
+            key = aes.Key;
+            iv = aes.IV;
+
+            //var do texto a cifrar
+            string textoACifrar = textBoxMessage.Text;
+            //
+            string textoCifrado = CifrarTexto(textoACifrar);
+
+            openFileDialog1.InitialDirectory = SrcFolder;
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                 textoCifrado = openFileDialog1.FileName;
+                if (textoCifrado != null)
+                {
+                    FileInfo fInfo = new FileInfo(textoCifrado);
+                    // Pass the file name without the path.
+                    string name = fInfo.FullName;
+                    CifrarTexto(name);
+                }
+
+            }
         }
     }
 }
