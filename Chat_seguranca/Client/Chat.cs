@@ -159,13 +159,13 @@ namespace Client
             }
 
             //codigo cifrar
-            string textoACifrar = textBoxMensagens.Text;
+           // string textoACifrar = textBoxMensagens.Text;
 
-            string textoCifrado = CifrarTexto(textoACifrar);
+            //string textoCifrado = CifrarTexto(textoACifrar);
 
             // byte[] textCifrado = 
 
-            Console.WriteLine(textoCifrado);
+            //Console.WriteLine(textoCifrado);
             //enviar o teto cifrado por ficheiro
         }
 
@@ -229,6 +229,8 @@ namespace Client
             key = aes.Key;
             iv = aes.IV;
 
+
+
             //var do texto a cifrar
             string textoACifrar = textBoxMessage.Text;
             //
@@ -237,16 +239,37 @@ namespace Client
             openFileDialog1.InitialDirectory = SrcFolder;
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
-                 textoCifrado = openFileDialog1.FileName;
+
+                /*textoCifrado = openFileDialog1.FileName;
                 if (textoCifrado != null)
                 {
+
                     FileInfo fInfo = new FileInfo(textoCifrado);
                     // Pass the file name without the path.
                     string name = fInfo.FullName;
                     CifrarTexto(name);
+                  */
+                try
+                {
+                    if(textoCifrado != null)
+                    {
+                        FileStream fParameter = new FileStream(SrcFolder, FileMode.Create, FileAccess.Write);
+                        StreamWriter m_WriterParameter = new StreamWriter(fParameter);
+                        m_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
+                        m_WriterParameter.Write(textoCifrado);
+                        m_WriterParameter.Flush();
+                        m_WriterParameter.Close();
+                    }
+                }catch(Exception er)
+                {
+                    MessageBox.Show(er.ToString());
                 }
+                    
+             }
 
-            }
         }
     }
+        
+        
 }
+
