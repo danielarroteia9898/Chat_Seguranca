@@ -15,6 +15,10 @@ namespace Server
         //Criar novamente uma constante, tal como feito do lado do cliente.
         private const int PORT = 10000;
 
+        //Lista de clientes com as chaves púbicas de cada um
+        //passar as mensagens cifradas do cliente
+        //
+
         static void Main(string[] args)
         {
             // Definição das variáveis na função principal.
