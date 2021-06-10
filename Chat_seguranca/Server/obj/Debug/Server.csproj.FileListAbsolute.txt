@@ -23,3 +23,11 @@ C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Server\obj\Debug\Server.cspr
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Server\obj\Debug\Server.csproj.CopyComplete
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Server\obj\Debug\Server.exe
 C:\Users\WORK\Desktop\Chat_Seguranca\Chat_seguranca\Server\obj\Debug\Server.pdb
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Server\bin\Debug\Server.exe.config
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Server\bin\Debug\Server.exe
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Server\bin\Debug\Server.pdb
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.csproj.AssemblyReference.cache
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.csproj.CoreCompileInputs.cache
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.csproj.CopyComplete
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.exe
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Server\obj\Debug\Server.pdb

@@ -41,7 +41,6 @@ namespace Client
         {
             InitializeComponent();
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
-            //lient = Cliente();
             client = new TcpClient();
             client.Connect(endpoint);
             networkStream = client.GetStream();

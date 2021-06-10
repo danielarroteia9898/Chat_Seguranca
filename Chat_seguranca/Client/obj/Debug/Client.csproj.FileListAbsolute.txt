@@ -45,3 +45,17 @@ E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Cha
 E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.csproj.CopyComplete
 E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.exe
 E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.pdb
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Client.exe.config
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Client.exe
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Client.pdb
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.csproj.AssemblyReference.cache
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.Chat.resources
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.login.resources
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.Properties.Resources.resources
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.csproj.GenerateResource.cache
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.csproj.CoreCompileInputs.cache
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.csproj.CopyComplete
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.exe
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.pdb
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Database.mdf
+C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Database_log.ldf
