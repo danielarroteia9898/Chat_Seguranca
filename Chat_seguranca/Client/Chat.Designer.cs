@@ -42,6 +42,10 @@
             this.chavePúblicaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mensagensCifradasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mensagensDecifradasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog_chavePublica = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialog_Cifrado = new System.Windows.Forms.SaveFileDialog();
+            this.saveFileDialog_decifrado = new System.Windows.Forms.SaveFileDialog();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -164,7 +168,7 @@
             this.mensagensCifradasToolStripMenuItem,
             this.mensagensDecifradasToolStripMenuItem});
             this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
-            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
             this.exportarToolStripMenuItem.Text = "Exportar";
             // 
             // chavePúblicaToolStripMenuItem
@@ -181,6 +185,7 @@
             this.mensagensCifradasToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
             this.mensagensCifradasToolStripMenuItem.Size = new System.Drawing.Size(290, 26);
             this.mensagensCifradasToolStripMenuItem.Text = "Mensagens Cifradas";
+            this.mensagensCifradasToolStripMenuItem.Click += new System.EventHandler(this.mensagensCifradasToolStripMenuItem_Click);
             // 
             // mensagensDecifradasToolStripMenuItem
             // 
@@ -188,6 +193,23 @@
             this.mensagensDecifradasToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.mensagensDecifradasToolStripMenuItem.Size = new System.Drawing.Size(290, 26);
             this.mensagensDecifradasToolStripMenuItem.Text = "Mensagens Decifradas";
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            
+            // 
+            // saveFileDialog_chavePublica
+            // 
+            this.saveFileDialog_chavePublica.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_chavePublica_FileOk);
+            // 
+            // saveFileDialog_Cifrado
+            // 
+            this.saveFileDialog_Cifrado.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_Cifrado_FileOk);
+            // 
+            // saveFileDialog_decifrado
+            // 
+            this.saveFileDialog_decifrado.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog_decifrado_FileOk);
             // 
             // Chat
             // 
@@ -231,6 +253,10 @@
         private System.Windows.Forms.ToolStripMenuItem chavePúblicaToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mensagensCifradasToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mensagensDecifradasToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog_chavePublica;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog_Cifrado;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog_decifrado;
     }
 }
 

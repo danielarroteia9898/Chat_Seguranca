@@ -30,7 +30,7 @@ namespace Client
         //variaveis para ficheiros
         const string EncrFolder = @"c:\Encrypt\";
         const string DecrFolder = @"c:\Decrypt\";
-        const string SrcFolder = @"c:\ChavePublica\";
+        //const string SrcFolder = @"c:\ChavePublica\";
 
         //var para guardar os ficheiro e abri-los
 
@@ -222,6 +222,25 @@ namespace Client
 
         private void chavePúblicaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+
+            saveFileDialog_chavePublica.Title = "Export public key";
+            saveFileDialog_chavePublica.DefaultExt = "txt";
+
+            saveFileDialog_chavePublica.Filter = "Text files (*.txt)|*.txt";
+
+            if (! Directory.Exists("c:\\ChavePublica\\"))
+            {
+                Directory.CreateDirectory("c:\\ChavePublica\\");
+            }
+            
+
+            saveFileDialog_chavePublica.ShowDialog();
+
+        }
+
+        private void mensagensCifradasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            /*
             //para criar a diretória
             OpenFileDialog openFileDialog1 = new OpenFileDialog();
 
@@ -248,10 +267,10 @@ namespace Client
                     // Pass the file name without the path.
                     string name = fInfo.FullName;
                     CifrarTexto(name);
-                  */
+                  
                 try
                 {
-                    if(textoCifrado != null)
+                    if (textoCifrado != null)
                     {
                         FileStream fParameter = new FileStream(SrcFolder, FileMode.Create, FileAccess.Write);
                         StreamWriter m_WriterParameter = new StreamWriter(fParameter);
@@ -260,14 +279,71 @@ namespace Client
                         m_WriterParameter.Flush();
                         m_WriterParameter.Close();
                     }
-                }catch(Exception er)
+                }
+                catch (Exception er)
                 {
                     MessageBox.Show(er.ToString());
                 }
-                    
-             }
+                
+            }*/
+        }
+
+
+        private void saveFileDialog_chavePublica_FileOk(object sender, CancelEventArgs e)
+        {
+            
+            aes = new AesCryptoServiceProvider();
+            key = aes.Key;
+            iv = aes.IV;
+            string text = GerarChavePrivada(textBoxMessage.Text);
+            GerarIV(textBoxMessage.Text);
+
+         
+            string path = saveFileDialog_chavePublica.FileName;
+            File.WriteAllText(path, text);
 
         }
+        private void saveFileDialog_Cifrado_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        private void saveFileDialog_decifrado_FileOk(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        /*
+
+        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
+        {
+            string path = saveFileDialog_chavePublica.FileName;
+
+            FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
+
+            
+
+            ListaClientes = bin.Deserialize(stream) as List<Cliente>;
+            ClientesBindingSource.DataSource = ListaClientes;
+            ClientesBindingSource.ResetBindings(false);
+            stream.Close();
+
+            //atualizar dp de se guardar - 21_04
+
+            try
+            {
+                this.Validate();
+                this.ClientesBindingSource.EndEdit();
+                this.ClientesBindingSource.Update(ClientesBindingSource.DataSource);
+                MessageBox.Show("Update successful");
+            }
+            catch (System.Exception ex)
+            {
+                MessageBox.Show("Update failed");
+            }
+
+        }
+        */
     }
         
         
