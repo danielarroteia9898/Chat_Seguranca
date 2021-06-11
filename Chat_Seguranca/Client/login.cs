@@ -175,6 +175,7 @@ namespace Client
 
         public bool CheckUsername(string username)
         {
+            //Regex biblioteca de verificação de strings
             int x = new Regex("[A-Z]").Matches(username).Count;
             int y = new Regex("[0-9]").Matches(username).Count;
             int z = username.Length;
@@ -186,7 +187,6 @@ namespace Client
             {
                 return true;
             }
-
         }
         public bool CheckPassword(string password)
         {
