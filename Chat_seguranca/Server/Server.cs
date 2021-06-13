@@ -36,13 +36,6 @@ namespace Server
             {
                 // Definição da variável client do tipo TcpClient
                 TcpClient client = listener.AcceptTcpClient();
-
-                // Incrementação do contador, de forma a que vá sempre somando 1 (+1)
-                clientCounter++;
-
-                // Apresentação da mensagem indicative do nº do client na linha de comandos 
-                Console.WriteLine("Client {0} connected", clientCounter);
-
                 // Definição da variável clientHandler do tipo TcpClient
                 ClientHandler clientHandler = new ClientHandler(client, clientCounter);
                 clientHandler.Handle();

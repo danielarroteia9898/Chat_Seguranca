@@ -22,6 +22,9 @@ namespace Client
         public const int PORT = 10000;
         private const int NUMBER_OF_ITERATIONS = 1000;
         private const int SALTSIZE = 8;
+
+        private RSACryptoServiceProvider rsa;
+
         public login()
         {
             InitializeComponent();
@@ -32,7 +35,7 @@ namespace Client
             labelNick.Hide();
         }
         
-        private void Register(string username, byte[] saltedPasswordHash, byte[] salt, string name)
+        private void Register(string username, byte[] saltedPasswordHash, byte[] salt, string name, string chavePublica)
         {
             SqlConnection conn = null;
             try
@@ -49,10 +52,11 @@ namespace Client
                 SqlParameter paramPassHash = new SqlParameter("@saltedPasswordHash", saltedPasswordHash);
                 SqlParameter paramSalt = new SqlParameter("@salt", salt);
                 SqlParameter paramName = new SqlParameter("@name", name);
+                SqlParameter paramChavePublica = new SqlParameter("@chavePublica", chavePublica);
 
 
                 // Declaração do comando SQL
-                String sql = "INSERT INTO Users (Username, SaltedPasswordHash, Salt, Name) VALUES (@username,@saltedPasswordHash,@salt,@name)";
+                String sql = "INSERT INTO Users (Username, SaltedPasswordHash, Salt, Name, ChavePublica) VALUES (@username,@saltedPasswordHash,@salt,@name,@chavePublica)";
 
                 // Prepara comando SQL para ser executado na Base de Dados
                 SqlCommand cmd = new SqlCommand(sql, conn);
@@ -62,6 +66,7 @@ namespace Client
                 cmd.Parameters.Add(paramPassHash);
                 cmd.Parameters.Add(paramSalt);
                 cmd.Parameters.Add(paramName);
+                cmd.Parameters.Add(paramChavePublica);
 
                 // Executar comando SQL
                 int lines = cmd.ExecuteNonQuery();
@@ -145,14 +150,14 @@ namespace Client
      
             if (VerifyLogin(username, password))
             {
-                Form Chat = new Chat();
+                Form Chat = new Chat(username);
                 Chat.Show();
                
                 
             }
             else
             {
-                MessageBox.Show("Apresenta Credenciais Erradas !!");
+                MessageBox.Show("Apresenta Credênciais Erradas !! \nOu então não está Registado !!");
             } 
 
         }
@@ -207,8 +212,20 @@ namespace Client
             string username = textBoxUsernameR.Text;
             string password = textBoxPasswordR.Text;
             string name = textBoxName.Text;
+
+
+            byte[] salt = GenerateSalt(SALTSIZE);
+            byte[] saltedPass = GenerateSaltedHash(password, salt);
+
+            rsa = new RSACryptoServiceProvider();
+            string chavePublica = rsa.ToXmlString(false);
+            string bothkeys = rsa.ToXmlString(true);
+
+
+
             bool passwordVer = CheckPassword(password);
             bool usernameVer = CheckUsername(username);
+            
 
             if (usernameVer == false)
             {
@@ -220,11 +237,11 @@ namespace Client
             }
             else
             {
-                byte[] salt = GenerateSalt(SALTSIZE);
-                byte[] saltedPass = GenerateSaltedHash(password, salt);
-                Register(username, saltedPass, salt, name);
-                MessageBox.Show("Registado com Sucesso!");
                 
+
+                Register(username, saltedPass, salt, name, chavePublica);
+                MessageBox.Show(chavePublica);
+                MessageBox.Show("Registado com Sucesso!");
             }
             
 

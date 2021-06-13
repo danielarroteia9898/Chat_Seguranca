@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -17,27 +18,51 @@ namespace Client
 {
     public partial class Chat : Form
     {
+        private const int NUMBER_OF_ITERATIONS = 1000;
         private const int PORT = 10000;
         NetworkStream networkStream;
         ProtocolSI protocolSI;
         TcpClient client;
+        private string Username;
+
 
         //para cifrar/decifrar as mensagens
         private byte[] key;
         private byte[] iv;
         AesCryptoServiceProvider aes;
+        private SqlDataReader LerBaseDados(string username)
+        {
+            // Abrir ligação à Base de Dados
+            SqlConnection conn;
+            // Configurar ligação à Base de Dados
+            conn = new SqlConnection();
+            conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
 
-        //variaveis para ficheiros
-        const string EncrFolder = @"c:\Encrypt\";
-        const string DecrFolder = @"c:\Decrypt\";
-        //const string SrcFolder = @"c:\ChavePublica\";
+            // Abrir ligação à Base de Dados
+            conn.Open();
 
-        //var para guardar os ficheiro e abri-los
+            // Declaração do comando SQL
+            String sql = "SELECT * FROM Users WHERE Username = @username";
+            SqlCommand cmd = new SqlCommand();
+            cmd.CommandText = sql;
 
-        private OpenFileDialog openFileDialog = new OpenFileDialog();
+            // Declaração dos parâmetros do comando SQL
+            SqlParameter param = new SqlParameter("@username", username);
 
+            // Introduzir valor ao parâmentro registado no comando SQL
+            cmd.Parameters.Add(param);
 
-        public Chat()
+            // Associar ligação à Base de Dados ao comando a ser executado
+            cmd.Connection = conn;
+
+            // Executar comando SQL
+            SqlDataReader reader = cmd.ExecuteReader();
+            // Ler resultado da pesquisa
+            reader.Read();
+            return reader;
+        }
+
+        public Chat(string username)
         {
             InitializeComponent();
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
@@ -45,15 +70,16 @@ namespace Client
             client.Connect(endpoint);
             networkStream = client.GetStream();
             protocolSI = new ProtocolSI();
-
+            SqlDataReader reader = LerBaseDados(username);
+            labelUsername.Text = username;
+            //Obter Nickname
+            string nick = (string)reader["Name"];
+            labelNick.Text = nick;
         }
-
         //gerar a chave simétrica
-        private string GerarChavePrivada(string pass)
+        private string GerarChavePrivada(string pass, byte[] salt)
         {
-            byte[] salt = new byte[] { 0, 1, 2, 3, 4, 5, 6, 7 };
-
-            Rfc2898DeriveBytes pwdGen = new Rfc2898DeriveBytes(pass, salt, 1000);
+            Rfc2898DeriveBytes pwdGen = new Rfc2898DeriveBytes(pass, salt, NUMBER_OF_ITERATIONS);
 
             //gerar a chave
             byte[] key = pwdGen.GetBytes(16);
@@ -65,10 +91,9 @@ namespace Client
 
 
         //metodo para  vetor de inicialização
-        private string GerarIV(string pass)
+        private string GerarIV(string pass, byte[] salt)
         {
-            byte[] salt = new byte[] { 7, 6, 5, 4, 3, 2, 1, 0 };
-            Rfc2898DeriveBytes pwdGen = new Rfc2898DeriveBytes(pass, salt, 1000);
+            Rfc2898DeriveBytes pwdGen = new Rfc2898DeriveBytes(pass, salt, NUMBER_OF_ITERATIONS);
 
             //gerar o vetor
             byte[] iv = pwdGen.GetBytes(16);
@@ -130,16 +155,29 @@ namespace Client
 
         }
 
-
+        private void EnviarMensagem(string msg)
+        {
+            aes = new AesCryptoServiceProvider();
+            key = aes.Key;
+            iv = aes.IV;
+            byte[] chat = protocolSI.Make(ProtocolSICmdType.DATA, msg); //cria uma mensagem/pacote de um tipo específico
+            networkStream.Write(chat, 0, chat.Length);
+            while (protocolSI.GetCmdType() != ProtocolSICmdType.ACK)
+            {
+                networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
+            }
+        }
         // Método do botão enviar
         private void buttonSend_Click(object sender, EventArgs e)
         {
+            SqlDataReader reader = LerBaseDados(labelUsername.Text);
+            byte[] salt = (byte[])reader["Salt"];
             //guardar a chave e vetor
             aes = new AesCryptoServiceProvider();
             key = aes.Key;
             iv = aes.IV;
-            string text = GerarChavePrivada(textBoxMessage.Text);
-            GerarIV(textBoxMessage.Text);
+            string text = GerarChavePrivada(textBoxMessage.Text, salt);
+            GerarIV(textBoxMessage.Text, salt);
 
 
             MessageBox.Show(text);
@@ -147,15 +185,7 @@ namespace Client
             // networkStream.Write(iv, 0, iv.Length);
 
             //código para enviar mensagem
-            string msg = textBoxMessage.Text;
-            textBoxMessage.Clear();
-            byte[] chat = protocolSI.Make(ProtocolSICmdType.DATA, msg); //cria uma mensagem/pacote de um tipo específico
-            networkStream.Write(chat, 0, chat.Length);
-            textBoxMensagens.AppendText(msg);
-            while (protocolSI.GetCmdType() != ProtocolSICmdType.ACK)
-            {
-                networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
-            }
+            EnviarMensagem(text);
 
             //codigo cifrar
            // string textoACifrar = textBoxMensagens.Text;
@@ -290,12 +320,12 @@ namespace Client
 
         private void saveFileDialog_chavePublica_FileOk(object sender, CancelEventArgs e)
         {
-            
+            byte[] salt = { 1, 2, 3, 4, 5 };
             aes = new AesCryptoServiceProvider();
             key = aes.Key;
             iv = aes.IV;
-            string text = GerarChavePrivada(textBoxMessage.Text);
-            GerarIV(textBoxMessage.Text);
+            string text = GerarChavePrivada(textBoxMessage.Text, salt);
+            GerarIV(textBoxMessage.Text, salt);
 
          
             string path = saveFileDialog_chavePublica.FileName;
