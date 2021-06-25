@@ -188,9 +188,9 @@ namespace Client
             EnviarMensagem(text);
 
             //codigo cifrar
-           // string textoACifrar = textBoxMensagens.Text;
+            string textoACifrar = textBoxMensagens.Text;
 
-            //string textoCifrado = CifrarTexto(textoACifrar);
+            string textoCifrado = CifrarTexto(textoACifrar);
 
             // byte[] textCifrado = 
 
