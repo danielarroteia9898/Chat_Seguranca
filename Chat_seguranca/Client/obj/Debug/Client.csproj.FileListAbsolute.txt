@@ -59,3 +59,5 @@ C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Clien
 C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\obj\Debug\Client.pdb
 C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Database.mdf
 C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Database_log.ldf
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Database.mdf
+E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\bin\Debug\Database_log.ldf

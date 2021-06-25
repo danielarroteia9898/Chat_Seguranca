@@ -42,7 +42,7 @@ namespace Client
             {
                 // Configurar ligação à Base de Dados
                 conn = new SqlConnection();
-                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
+                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
 
                 // Abrir ligação à Base de Dados
                 conn.Open();
@@ -91,7 +91,7 @@ namespace Client
             {
                 // Configurar ligação à Base de Dados
                 conn = new SqlConnection();
-                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
+                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
 
                 // Abrir ligação à Base de Dados
                 conn.Open();

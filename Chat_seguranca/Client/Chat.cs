@@ -36,7 +36,7 @@ namespace Client
             SqlConnection conn;
             // Configurar ligação à Base de Dados
             conn = new SqlConnection();
-            conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
+            conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\cliente\Database.mdf';Integrated Security=True");
 
             // Abrir ligação à Base de Dados
             conn.Open();
@@ -269,52 +269,18 @@ namespace Client
 
         private void mensagensCifradasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            /*
-            //para criar a diretória
-            OpenFileDialog openFileDialog1 = new OpenFileDialog();
+            saveFileDialog_Cifrado.Title = "Export texto cifrado";
+            saveFileDialog_Cifrado.DefaultExt = "txt";
 
-            //chaves
-            key = aes.Key;
-            iv = aes.IV;
+            saveFileDialog_Cifrado.Filter = "Text files (*.txt)|*.txt";
 
-
-
-            //var do texto a cifrar
-            string textoACifrar = textBoxMessage.Text;
-            //
-            string textoCifrado = CifrarTexto(textoACifrar);
-
-            openFileDialog1.InitialDirectory = SrcFolder;
-            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            if (!Directory.Exists("c:\\Encrypt\\"))
             {
+                Directory.CreateDirectory("c:\\Encrypt\\");
+            }
 
-                /*textoCifrado = openFileDialog1.FileName;
-                if (textoCifrado != null)
-                {
 
-                    FileInfo fInfo = new FileInfo(textoCifrado);
-                    // Pass the file name without the path.
-                    string name = fInfo.FullName;
-                    CifrarTexto(name);
-                  
-                try
-                {
-                    if (textoCifrado != null)
-                    {
-                        FileStream fParameter = new FileStream(SrcFolder, FileMode.Create, FileAccess.Write);
-                        StreamWriter m_WriterParameter = new StreamWriter(fParameter);
-                        m_WriterParameter.BaseStream.Seek(0, SeekOrigin.End);
-                        m_WriterParameter.Write(textoCifrado);
-                        m_WriterParameter.Flush();
-                        m_WriterParameter.Close();
-                    }
-                }
-                catch (Exception er)
-                {
-                    MessageBox.Show(er.ToString());
-                }
-                
-            }*/
+            saveFileDialog_Cifrado.ShowDialog();
         }
 
 
@@ -334,45 +300,42 @@ namespace Client
         }
         private void saveFileDialog_Cifrado_FileOk(object sender, CancelEventArgs e)
         {
+            //IR BUSCAR CHAVE E IV
+            aes = new AesCryptoServiceProvider();
+            key = aes.Key;
+            iv = aes.IV;
+
+
+            //IR BUSCAR O TEXTO DA TEXTBOX TextoACifrar
+            string textoACifrar = textBoxMessage.Text;
+
+            //CHAMAR A FUNÇÃO CifrarTexto E ENVIAR O TEXTO GUARDADO ANTES E GUARDÁ-LO NA VARÍAVEL TEXTOCIFRADO
+            string textoCifrado = CifrarTexto(textoACifrar);
+
+            string path = saveFileDialog_Cifrado.FileName;
+            File.WriteAllText(path, textoCifrado);
 
         }
 
         private void saveFileDialog_decifrado_FileOk(object sender, CancelEventArgs e)
         {
+            //IR BUSCAR CHAVE E IV
+             aes = new AesCryptoServiceProvider();
+            key = aes.Key;
+            iv = aes.IV;
+           
 
+            //IR BUSCAR O TEXTO DA TEXTBOX TextoACifrar
+            string textoCifrado = textBoxMessage.Text;
+
+            //CHAMAR A FUNÇÃO CifrarTexto E ENVIAR O TEXTO GUARDADO ANTES E GUARDÁ-LO NA VARÍAVEL TEXTOCIFRADO
+            string textoDecifrado = DecifrarTexto(textoCifrado);
+
+            string path = saveFileDialog_decifrado.FileName;
+            File.WriteAllText(path, textoDecifrado);
         }
 
-        /*
-
-        private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
-        {
-            string path = saveFileDialog_chavePublica.FileName;
-
-            FileStream stream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            
-
-            ListaClientes = bin.Deserialize(stream) as List<Cliente>;
-            ClientesBindingSource.DataSource = ListaClientes;
-            ClientesBindingSource.ResetBindings(false);
-            stream.Close();
-
-            //atualizar dp de se guardar - 21_04
-
-            try
-            {
-                this.Validate();
-                this.ClientesBindingSource.EndEdit();
-                this.ClientesBindingSource.Update(ClientesBindingSource.DataSource);
-                MessageBox.Show("Update successful");
-            }
-            catch (System.Exception ex)
-            {
-                MessageBox.Show("Update failed");
-            }
-
-        }
-        */
+       
     }
         
         
