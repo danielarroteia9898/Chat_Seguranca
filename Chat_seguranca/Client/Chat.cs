@@ -18,13 +18,13 @@ namespace Client
 {
     public partial class Chat : Form
     {
-        private const int NUMBER_OF_ITERATIONS = 1000;
+        private const int NUMBER_OF_ITERATIONS = 8;
         private const int PORT = 10000;
+        
+
         NetworkStream networkStream;
         ProtocolSI protocolSI;
         TcpClient client;
-        private string Username;
-
 
         //para cifrar/decifrar as mensagens
         private byte[] key;
@@ -36,7 +36,7 @@ namespace Client
             SqlConnection conn;
             // Configurar ligação à Base de Dados
             conn = new SqlConnection();
-            conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\cliente\Database.mdf';Integrated Security=True");
+            conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
 
             // Abrir ligação à Base de Dados
             conn.Open();
@@ -61,20 +61,22 @@ namespace Client
             reader.Read();
             return reader;
         }
-
+        
         public Chat(string username)
         {
             InitializeComponent();
+            ApresentarAmigos();
+            ApresentarMensagens();
             IPEndPoint endpoint = new IPEndPoint(IPAddress.Loopback, PORT);
             client = new TcpClient();
             client.Connect(endpoint);
             networkStream = client.GetStream();
             protocolSI = new ProtocolSI();
             SqlDataReader reader = LerBaseDados(username);
-            labelUsername.Text = username;
             //Obter Nickname
             string nick = (string)reader["Name"];
             labelNick.Text = nick;
+            labelUsername.Text = username;
         }
         //gerar a chave simétrica
         private string GerarChavePrivada(string pass, byte[] salt)
@@ -103,63 +105,14 @@ namespace Client
         }
 
         //metodo para cifrar a mensagem
-        private string CifrarTexto(string txt)
+        private static byte[] CifrarDados(string plainText, byte[] salt)
         {
-            //var para guardar as mensagens
-            byte[] txtDecifrado = Encoding.UTF8.GetBytes(txt);
-
-            //var para guardar as mensagens
-            byte[] txtCifrado;
-
-            //reserva de memória  para o texto a cifrar
-            MemoryStream ms = new MemoryStream();
-
-            //Iniciar o sistema de cifragem
-            CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Write);
-
-            //para cifrar os dados
-            cs.Write(txtDecifrado, 0, txtDecifrado.Length);
-            //cs.Close();
-
-            //guardar os dados cifrados
-            txtCifrado = ms.ToArray();
-
-            //converter os bytes para texto
-            string txtCifradoB64 = Convert.ToBase64String(txtCifrado);
-
-            return txtCifradoB64;
-        }
-
-        //método para decifrar
-        private string DecifrarTexto(string txtCifradoB64)
-        {
-            //var para guardar o texto cifrado
-            byte[] txtCifrado = Convert.FromBase64String(txtCifradoB64);
-
-            MemoryStream ms = new MemoryStream(txtCifrado);
-
-            CryptoStream cs = new CryptoStream(ms, aes.CreateDecryptor(), CryptoStreamMode.Read);
-
-            //var para guardar o texto decifrado
-            byte[] txtDecifrado = new byte[ms.Length];
-
-            int bytesLidos = 0;
-
-            //decifrar os dados
-            bytesLidos = cs.Read(txtDecifrado, 0, txtDecifrado.Length);
-            cs.Close();
-
-            string textoDecifrado = Encoding.UTF8.GetString(txtDecifrado, 0, bytesLidos);
-
-            return textoDecifrado;
-
+            Rfc2898DeriveBytes rfc2898 = new Rfc2898DeriveBytes(plainText, salt, NUMBER_OF_ITERATIONS);
+            return rfc2898.GetBytes(32);
         }
 
         private void EnviarMensagem(string msg)
         {
-            aes = new AesCryptoServiceProvider();
-            key = aes.Key;
-            iv = aes.IV;
             byte[] chat = protocolSI.Make(ProtocolSICmdType.DATA, msg); //cria uma mensagem/pacote de um tipo específico
             networkStream.Write(chat, 0, chat.Length);
             while (protocolSI.GetCmdType() != ProtocolSICmdType.ACK)
@@ -167,35 +120,67 @@ namespace Client
                 networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
             }
         }
+        private void GuardarMensagem(string message, string username, DateTime time, byte[] mensagemCifrada)
+        {
+            SqlConnection conn = null;
+            try
+            {
+                // Configurar ligação à Base de Dados
+                conn = new SqlConnection();
+                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
+
+                // Abrir ligação à Base de Dados
+                conn.Open();
+
+                // Declaração dos parâmetros do comando SQL
+                SqlParameter paramMensagem = new SqlParameter("@MSG", message);
+                SqlParameter paramMensagemCifrada = new SqlParameter("@Mensagem", mensagemCifrada);
+                SqlParameter paramUsername = new SqlParameter("@username", username);
+                SqlParameter paramTime = new SqlParameter("@time", time);
+
+
+                // Declaração do comando SQL
+                String sql = "INSERT INTO Mensagem (msg, username, time, mensagem) VALUES (@MSG,@username,@time,@Mensagem)";
+
+                // Prepara comando SQL para ser executado na Base de Dados
+                SqlCommand cmd = new SqlCommand(sql, conn);
+
+                // Introduzir valores aos parâmentros registados no comando SQL
+                cmd.Parameters.Add(paramMensagem);
+                cmd.Parameters.Add(paramMensagemCifrada);
+                cmd.Parameters.Add(paramUsername);
+                cmd.Parameters.Add(paramTime);
+     
+                // Executar comando SQL
+                int lines = cmd.ExecuteNonQuery();
+
+                // Fechar ligação
+                conn.Close();
+                if (lines == 0)
+                {
+                    // Se forem devolvidas 0 linhas alteradas então o não foi executado com sucesso
+                    throw new Exception("Error while sending message");
+                }
+            }
+            catch (Exception e)
+            {
+                throw new Exception("Error while sending message:" + e.Message);
+            }
+        }
+
+
         // Método do botão enviar
         private void buttonSend_Click(object sender, EventArgs e)
         {
+            string text = textBoxMessage.Text;
             SqlDataReader reader = LerBaseDados(labelUsername.Text);
             byte[] salt = (byte[])reader["Salt"];
-            //guardar a chave e vetor
-            aes = new AesCryptoServiceProvider();
-            key = aes.Key;
-            iv = aes.IV;
-            string text = GerarChavePrivada(textBoxMessage.Text, salt);
-            GerarIV(textBoxMessage.Text, salt);
-
-
-            MessageBox.Show(text);
-            //networkStream.Write(key, 0, key.Length);
-            // networkStream.Write(iv, 0, iv.Length);
-
-            //código para enviar mensagem
+            byte[] msgCifrada = CifrarDados(text, salt);
             EnviarMensagem(text);
-
-            //codigo cifrar
-            string textoACifrar = textBoxMensagens.Text;
-
-            string textoCifrado = CifrarTexto(textoACifrar);
-
-            // byte[] textCifrado = 
-
-            //Console.WriteLine(textoCifrado);
-            //enviar o teto cifrado por ficheiro
+            GuardarMensagem(text, labelUsername.Text, DateTime.Now, msgCifrada);
+            textBoxMessage.Text = null;
+            listBoxMensagens.Items.Clear();
+            ApresentarMensagens();
         }
 
 
@@ -206,12 +191,8 @@ namespace Client
         {
             try
             {
-                // Definição da variável eot (End of Transmission) do tipo array de byte.
-                // Utilização do método Make. ProtocolSICmdType serve para enviar dados
                 byte[] eot = protocolSI.Make(ProtocolSICmdType.EOT);
 
-                // A classe NetworkStream disponibiliza métodos para enviar/receber dados através de socket Stream
-                // O Socket de rede é um endpoint interno para envio e recepção de dados com um nó/computador presente na rede.
                 networkStream.Write(eot, 0, eot.Length);
                 networkStream.Read(protocolSI.Buffer, 0, protocolSI.Buffer.Length);
                 networkStream.Close();
@@ -241,6 +222,83 @@ namespace Client
         //Método para apresentar lista de amigos
         private void ApresentarAmigos()
         {
+            string str = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
+
+            SqlConnection con = new SqlConnection(str);
+
+            string query = "select * from Users";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            SqlDataReader dbr;
+
+            try
+
+            {
+
+                con.Open();
+
+                dbr = cmd.ExecuteReader();
+
+                while (dbr.Read())
+
+                {
+
+                    string sname = (string)dbr["username"] +"-   "+ (string) dbr["Name"];
+
+                    listBoxAmigos.Items.Add(sname);
+
+                }
+
+            }
+
+            catch (Exception es)
+
+            {
+
+                MessageBox.Show(es.Message);
+
+            }
+
+        }
+        private void ApresentarMensagens()
+        {
+            string str = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
+
+            SqlConnection con = new SqlConnection(str);
+
+            string query = "select * from Mensagem";
+
+            SqlCommand cmd = new SqlCommand(query, con);
+
+            SqlDataReader dbr;
+
+            try
+
+            {
+
+                con.Open();
+
+                dbr = cmd.ExecuteReader();
+
+                while (dbr.Read())
+
+                {
+                    string sname = (string)dbr["username"]+"("+dbr["time"] +")"+ " :: " + (string)dbr["MSG"];
+
+                    listBoxMensagens.Items.Add(sname);
+
+                }
+
+            }
+
+            catch (Exception es)
+
+            {
+
+                MessageBox.Show(es.Message);
+
+            }
 
         }
 
@@ -310,10 +368,11 @@ namespace Client
             string textoACifrar = textBoxMessage.Text;
 
             //CHAMAR A FUNÇÃO CifrarTexto E ENVIAR O TEXTO GUARDADO ANTES E GUARDÁ-LO NA VARÍAVEL TEXTOCIFRADO
-            string textoCifrado = CifrarTexto(textoACifrar);
+           // byte[] textoCifrado = CifrarDados(textoACifrar);
+           // string text = Convert.ToBase64String(textoCifrado);
 
             string path = saveFileDialog_Cifrado.FileName;
-            File.WriteAllText(path, textoCifrado);
+            //File.WriteAllText(path, text);
 
         }
 
@@ -329,13 +388,16 @@ namespace Client
             string textoCifrado = textBoxMessage.Text;
 
             //CHAMAR A FUNÇÃO CifrarTexto E ENVIAR O TEXTO GUARDADO ANTES E GUARDÁ-LO NA VARÍAVEL TEXTOCIFRADO
-            string textoDecifrado = DecifrarTexto(textoCifrado);
+            //string textoDecifrado = DecifrarTexto(textoCifrado);
 
             string path = saveFileDialog_decifrado.FileName;
-            File.WriteAllText(path, textoDecifrado);
+            //File.WriteAllText(path, textoDecifrado);
         }
 
-       
+        private void listBoxMensagens_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
     }
         
         

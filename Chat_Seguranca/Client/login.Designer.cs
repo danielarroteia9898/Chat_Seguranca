@@ -95,6 +95,7 @@ namespace Client
             this.textBox_password.Location = new System.Drawing.Point(107, 144);
             this.textBox_password.Margin = new System.Windows.Forms.Padding(2);
             this.textBox_password.Name = "textBox_password";
+            this.textBox_password.PasswordChar = '*';
             this.textBox_password.Size = new System.Drawing.Size(155, 20);
             this.textBox_password.TabIndex = 5;
             // 
@@ -125,8 +126,10 @@ namespace Client
             this.textBoxPasswordR.Location = new System.Drawing.Point(107, 144);
             this.textBoxPasswordR.Margin = new System.Windows.Forms.Padding(2);
             this.textBoxPasswordR.Name = "textBoxPasswordR";
+            this.textBoxPasswordR.PasswordChar = '*';
             this.textBoxPasswordR.Size = new System.Drawing.Size(155, 20);
             this.textBoxPasswordR.TabIndex = 8;
+            this.textBoxPasswordR.TextChanged += new System.EventHandler(this.textBoxPasswordR_TextChanged);
             // 
             // textBoxName
             // 

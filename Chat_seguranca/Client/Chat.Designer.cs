@@ -32,10 +32,8 @@
             this.labelMessage = new System.Windows.Forms.Label();
             this.textBoxMessage = new System.Windows.Forms.TextBox();
             this.buttonSend = new System.Windows.Forms.Button();
-            this.textBoxAmigos = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.buttonAddAmigos = new System.Windows.Forms.Button();
-            this.textBoxMensagens = new System.Windows.Forms.TextBox();
             this.labelNick = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.ficheiroToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -48,6 +46,8 @@
             this.saveFileDialog_Cifrado = new System.Windows.Forms.SaveFileDialog();
             this.saveFileDialog_decifrado = new System.Windows.Forms.SaveFileDialog();
             this.labelUsername = new System.Windows.Forms.Label();
+            this.listBoxAmigos = new System.Windows.Forms.ListBox();
+            this.listBoxMensagens = new System.Windows.Forms.ListBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -57,10 +57,9 @@
             this.labelMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelMessage.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.labelMessage.Image = ((System.Drawing.Image)(resources.GetObject("labelMessage.Image")));
-            this.labelMessage.Location = new System.Drawing.Point(109, 453);
-            this.labelMessage.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelMessage.Location = new System.Drawing.Point(82, 368);
             this.labelMessage.Name = "labelMessage";
-            this.labelMessage.Size = new System.Drawing.Size(147, 31);
+            this.labelMessage.Size = new System.Drawing.Size(118, 25);
             this.labelMessage.TabIndex = 0;
             this.labelMessage.Text = "Mensagem";
             // 
@@ -68,36 +67,22 @@
             // 
             this.textBoxMessage.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.textBoxMessage.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMessage.Location = new System.Drawing.Point(109, 486);
-            this.textBoxMessage.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.textBoxMessage.Location = new System.Drawing.Point(82, 395);
             this.textBoxMessage.Multiline = true;
             this.textBoxMessage.Name = "textBoxMessage";
-            this.textBoxMessage.Size = new System.Drawing.Size(481, 75);
+            this.textBoxMessage.Size = new System.Drawing.Size(362, 62);
             this.textBoxMessage.TabIndex = 1;
             // 
             // buttonSend
             // 
             this.buttonSend.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSend.Location = new System.Drawing.Point(589, 486);
-            this.buttonSend.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonSend.Location = new System.Drawing.Point(442, 395);
             this.buttonSend.Name = "buttonSend";
-            this.buttonSend.Size = new System.Drawing.Size(129, 76);
+            this.buttonSend.Size = new System.Drawing.Size(97, 62);
             this.buttonSend.TabIndex = 2;
             this.buttonSend.Text = "Enviar";
             this.buttonSend.UseVisualStyleBackColor = true;
             this.buttonSend.Click += new System.EventHandler(this.buttonSend_Click);
-            // 
-            // textBoxAmigos
-            // 
-            this.textBoxAmigos.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.textBoxAmigos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxAmigos.Location = new System.Drawing.Point(727, 101);
-            this.textBoxAmigos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxAmigos.Multiline = true;
-            this.textBoxAmigos.Name = "textBoxAmigos";
-            this.textBoxAmigos.ReadOnly = true;
-            this.textBoxAmigos.Size = new System.Drawing.Size(235, 461);
-            this.textBoxAmigos.TabIndex = 4;
             // 
             // label1
             // 
@@ -105,10 +90,9 @@
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.label1.Image = ((System.Drawing.Image)(resources.GetObject("label1.Image")));
-            this.label1.Location = new System.Drawing.Point(720, 65);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(540, 53);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(111, 31);
+            this.label1.Size = new System.Drawing.Size(89, 25);
             this.label1.TabIndex = 5;
             this.label1.Text = "Amigos ";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -116,26 +100,12 @@
             // buttonAddAmigos
             // 
             this.buttonAddAmigos.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonAddAmigos.Location = new System.Drawing.Point(907, 50);
-            this.buttonAddAmigos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.buttonAddAmigos.Location = new System.Drawing.Point(680, 41);
             this.buttonAddAmigos.Name = "buttonAddAmigos";
-            this.buttonAddAmigos.Size = new System.Drawing.Size(56, 46);
+            this.buttonAddAmigos.Size = new System.Drawing.Size(42, 37);
             this.buttonAddAmigos.TabIndex = 6;
             this.buttonAddAmigos.Text = "+";
             this.buttonAddAmigos.UseVisualStyleBackColor = true;
-            // 
-            // textBoxMensagens
-            // 
-            this.textBoxMensagens.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.textBoxMensagens.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxMensagens.Location = new System.Drawing.Point(109, 101);
-            this.textBoxMensagens.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.textBoxMensagens.Multiline = true;
-            this.textBoxMensagens.Name = "textBoxMensagens";
-            this.textBoxMensagens.ReadOnly = true;
-            this.textBoxMensagens.Size = new System.Drawing.Size(608, 347);
-            this.textBoxMensagens.TabIndex = 7;
-            this.textBoxMensagens.TextChanged += new System.EventHandler(this.textBoxMensagens_TextChanged);
             // 
             // labelNick
             // 
@@ -143,10 +113,9 @@
             this.labelNick.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.labelNick.ForeColor = System.Drawing.SystemColors.Highlight;
             this.labelNick.Image = ((System.Drawing.Image)(resources.GetObject("labelNick.Image")));
-            this.labelNick.Location = new System.Drawing.Point(109, 66);
-            this.labelNick.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelNick.Location = new System.Drawing.Point(82, 54);
             this.labelNick.Name = "labelNick";
-            this.labelNick.Size = new System.Drawing.Size(128, 31);
+            this.labelNick.Size = new System.Drawing.Size(102, 25);
             this.labelNick.TabIndex = 8;
             this.labelNick.Text = "Utilizador";
             // 
@@ -157,8 +126,8 @@
             this.ficheiroToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1053, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(790, 24);
             this.menuStrip1.TabIndex = 9;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -167,7 +136,7 @@
             this.ficheiroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.exportarToolStripMenuItem});
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
-            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(61, 20);
             this.ficheiroToolStripMenuItem.Text = "Ficheiro";
             // 
             // exportarToolStripMenuItem
@@ -177,14 +146,14 @@
             this.mensagensCifradasToolStripMenuItem,
             this.mensagensDecifradasToolStripMenuItem});
             this.exportarToolStripMenuItem.Name = "exportarToolStripMenuItem";
-            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(148, 26);
+            this.exportarToolStripMenuItem.Size = new System.Drawing.Size(118, 22);
             this.exportarToolStripMenuItem.Text = "Exportar";
             // 
             // chavePúblicaToolStripMenuItem
             // 
             this.chavePúblicaToolStripMenuItem.Name = "chavePúblicaToolStripMenuItem";
             this.chavePúblicaToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
-            this.chavePúblicaToolStripMenuItem.Size = new System.Drawing.Size(290, 26);
+            this.chavePúblicaToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.chavePúblicaToolStripMenuItem.Text = "Chave Pública";
             this.chavePúblicaToolStripMenuItem.Click += new System.EventHandler(this.chavePúblicaToolStripMenuItem_Click);
             // 
@@ -192,7 +161,7 @@
             // 
             this.mensagensCifradasToolStripMenuItem.Name = "mensagensCifradasToolStripMenuItem";
             this.mensagensCifradasToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.mensagensCifradasToolStripMenuItem.Size = new System.Drawing.Size(290, 26);
+            this.mensagensCifradasToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.mensagensCifradasToolStripMenuItem.Text = "Mensagens Cifradas";
             this.mensagensCifradasToolStripMenuItem.Click += new System.EventHandler(this.mensagensCifradasToolStripMenuItem_Click);
             // 
@@ -200,7 +169,7 @@
             // 
             this.mensagensDecifradasToolStripMenuItem.Name = "mensagensDecifradasToolStripMenuItem";
             this.mensagensDecifradasToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
-            this.mensagensDecifradasToolStripMenuItem.Size = new System.Drawing.Size(290, 26);
+            this.mensagensDecifradasToolStripMenuItem.Size = new System.Drawing.Size(232, 22);
             this.mensagensDecifradasToolStripMenuItem.Text = "Mensagens Decifradas";
             // 
             // openFileDialog1
@@ -222,30 +191,47 @@
             // labelUsername
             // 
             this.labelUsername.AutoSize = true;
-            this.labelUsername.Location = new System.Drawing.Point(920, 586);
-            this.labelUsername.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelUsername.Location = new System.Drawing.Point(690, 476);
             this.labelUsername.Name = "labelUsername";
-            this.labelUsername.Size = new System.Drawing.Size(0, 17);
+            this.labelUsername.Size = new System.Drawing.Size(0, 13);
             this.labelUsername.TabIndex = 10;
+            // 
+            // listBoxAmigos
+            // 
+            this.listBoxAmigos.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.listBoxAmigos.FormattingEnabled = true;
+            this.listBoxAmigos.Location = new System.Drawing.Point(545, 81);
+            this.listBoxAmigos.Name = "listBoxAmigos";
+            this.listBoxAmigos.Size = new System.Drawing.Size(210, 368);
+            this.listBoxAmigos.TabIndex = 11;
+            // 
+            // listBoxMensagens
+            // 
+            this.listBoxMensagens.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.listBoxMensagens.FormattingEnabled = true;
+            this.listBoxMensagens.Location = new System.Drawing.Point(82, 82);
+            this.listBoxMensagens.Name = "listBoxMensagens";
+            this.listBoxMensagens.Size = new System.Drawing.Size(457, 277);
+            this.listBoxMensagens.TabIndex = 12;
+            this.listBoxMensagens.SelectedIndexChanged += new System.EventHandler(this.listBoxMensagens_SelectedIndexChanged);
             // 
             // Chat
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(1053, 607);
+            this.ClientSize = new System.Drawing.Size(790, 493);
+            this.Controls.Add(this.listBoxMensagens);
+            this.Controls.Add(this.listBoxAmigos);
             this.Controls.Add(this.labelUsername);
             this.Controls.Add(this.labelNick);
-            this.Controls.Add(this.textBoxMensagens);
             this.Controls.Add(this.buttonAddAmigos);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBoxAmigos);
             this.Controls.Add(this.buttonSend);
             this.Controls.Add(this.textBoxMessage);
             this.Controls.Add(this.labelMessage);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Chat";
             this.Text = "Client";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Client_FormClosing);
@@ -261,10 +247,8 @@
         private System.Windows.Forms.Label labelMessage;
         private System.Windows.Forms.TextBox textBoxMessage;
         private System.Windows.Forms.Button buttonSend;
-        private System.Windows.Forms.TextBox textBoxAmigos;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button buttonAddAmigos;
-        private System.Windows.Forms.TextBox textBoxMensagens;
         private System.Windows.Forms.Label labelNick;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem ficheiroToolStripMenuItem;
@@ -277,6 +261,8 @@
         private System.Windows.Forms.SaveFileDialog saveFileDialog_Cifrado;
         private System.Windows.Forms.SaveFileDialog saveFileDialog_decifrado;
         private System.Windows.Forms.Label labelUsername;
+        private System.Windows.Forms.ListBox listBoxAmigos;
+        private System.Windows.Forms.ListBox listBoxMensagens;
     }
 }
 

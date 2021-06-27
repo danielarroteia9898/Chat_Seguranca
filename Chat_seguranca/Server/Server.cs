@@ -41,10 +41,6 @@ namespace Server
             Console.WriteLine("SERVER READY");
             int clientCounter = 0;
 
-            _serverSocket.Bind(new IPEndPoint(IPAddress.Any, PORT));
-            _serverSocket.Listen(1);
-            _serverSocket.BeginAccept(new AsyncCallback(AcceptCallBack), null);
-
 
             //Criação do ciclo infinito de forma a que este esteja sempre em execução até ordem em contrário
             while (true)
@@ -97,9 +93,7 @@ namespace Server
         public ClientHandler(TcpClient client, int clientID)
         {
             this.client = client;
-            this.clientID = clientID;
-
-            
+            this.clientID = clientID;   
         }
         public void Handle()
         {

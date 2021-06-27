@@ -42,7 +42,7 @@ namespace Client
             {
                 // Configurar ligação à Base de Dados
                 conn = new SqlConnection();
-                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
+                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
 
                 // Abrir ligação à Base de Dados
                 conn.Open();
@@ -91,7 +91,7 @@ namespace Client
             {
                 // Configurar ligação à Base de Dados
                 conn = new SqlConnection();
-                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='E:\IPLeiria\1ano\2º semestre\topicos de segurança\projeto\reposito_projeto\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
+                conn.ConnectionString = String.Format(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename='C:\Users\Danie\OneDrive\Ambiente de Trabalho\Chat_Seguranca\Chat_Seguranca\Client\Database.mdf';Integrated Security=True");
 
                 // Abrir ligação à Base de Dados
                 conn.Open();
@@ -152,6 +152,7 @@ namespace Client
             {
                 Form Chat = new Chat(username);
                 Chat.Show();
+                
                
                 
             }
@@ -165,7 +166,7 @@ namespace Client
         {
             //Generate a cryptographic random number.
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-            byte[] buff = new byte[size];
+            byte[] buff = new byte[8];
             rng.GetBytes(buff);
             return buff;
         }
@@ -237,8 +238,6 @@ namespace Client
             }
             else
             {
-                
-
                 Register(username, saltedPass, salt, name, chavePublica);
                 MessageBox.Show(chavePublica);
                 MessageBox.Show("Registado com Sucesso!");
@@ -278,6 +277,11 @@ namespace Client
                 button_registo.Hide();
             }
             
+        }
+
+        private void textBoxPasswordR_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
